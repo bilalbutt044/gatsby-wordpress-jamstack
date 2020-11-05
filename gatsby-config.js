@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -15,6 +16,13 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-wordpress-inline-images`,
+      options: {
+        baseUrl: `http://localhost/wordpress-5.5.1/wordpress/graphql`,
+        protocol: `http`,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -31,7 +39,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress-experimental`,
       options: {
         url:
-        // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
+          // allows a fallback url if WPGRAPHQL_URL is not set in the env, this may be a local or remote WP instance.
           process.env.WPGRAPHQL_URL ||
           `http://localhost/wordpress-5.5.1/wordpress/graphql`,
         schema: {
